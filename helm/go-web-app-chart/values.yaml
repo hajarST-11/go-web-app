@@ -9,7 +9,7 @@ image:
   repository: zozii/go-web-app 
   
   # Tag de l'image (version)
-  tag: "v1"
+  tag: "19634326773"
 
   
   ingress:
