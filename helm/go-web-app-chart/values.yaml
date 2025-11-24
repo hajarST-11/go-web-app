@@ -1,0 +1,35 @@
+replicaCount: 2
+
+# ===========================================
+# 3. CONFIGURATION DE L'IMAGE DOCKER
+# ===========================================
+
+image:
+  # Nom du repository de l'image
+  repository: zozii/go-web-app 
+  
+  # Tag de l'image (version)
+  tag: "v1"
+
+  
+  ingress:
+  # Activer/désactiver l'Ingress
+  enabled: false
+  
+  # Classe de l'Ingress Controller
+  className: "nginx"
+  
+  # Annotations pour l'Ingress
+  annotations: {}
+     
+  
+  # Configuration des hosts et paths
+  hosts:
+    - host:  chart-example.local
+      paths:
+        - path: /
+          pathType: Prefix
+          # Service backend (si différent du service principal)
+          # backend:
+          #   service:
+          #     name: go-web-app

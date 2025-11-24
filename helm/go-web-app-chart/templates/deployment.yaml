@@ -1,0 +1,26 @@
+#Ce fichier dit à Kubernetes :
+#"Lance un pod qui utilise l'image Docker zozii/go-web-app:v1, expose le port 8080, garde toujours 1 instance en marche, et gère automatiquement son redémarrage."
+
+
+
+apiVersion: apps/v1   #Indique à Kubernetes quelle version de l’API utiliser. apps/v1 est utilisé pour les Deployments modernes.
+kind: Deployment
+metadata:          #Informations sur l’objet :
+  name: go-web-app
+  labels:
+    app: go-web-app
+spec:              #Contient les instructions principales du Deployment.
+  replicas: 1      #Kubernetes va lancer 1 pod.
+  selector:
+    matchLabels:      
+      app: go-web-app  #Doit correspondre exactement aux labels du template du pod.
+  template:            #Décrit le pod à créer.
+    metadata:
+      labels:
+        app: go-web-app    #Les labels appliqués au pod.Ils doivent obligatoirement être identiques à ceux du selector.
+    spec:                  #Définit les conteneurs du pod.
+      containers:
+      - name: go-web-app
+        image: zozii/go-web-app:v1     #C’est l’image Docker que Kubernetes va télécharger depuis Docker Hub.
+        ports:
+        - containerPort: 8080

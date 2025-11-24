@@ -1,0 +1,18 @@
+#Ce Service dit à Kubernetes :
+
+#"Expose les pods ayant le label app=go-web-app via un Service interne (ClusterIP), en exposant le port 80, redirigé vers 8080 dans les pods."
+
+apiVersion: v1
+kind: Service  #Tu veux créer un Service, c’est-à-dire une ressource qui permet d’accéder à un Pod.
+metadata:
+  name: go-web-app #nom du service
+  labels:      #tags pour identifier le service
+    app: go-web-app
+spec:             #Configuration du service.
+  ports:
+  - port: 80
+    targetPort: 8080  #Le service écoute sur port 80 et redirige vers port 8080 du Pod.
+    protocol: TCP
+  selector:
+    app: go-web-app
+  type: ClusterIP
