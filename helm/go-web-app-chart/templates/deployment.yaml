@@ -21,6 +21,6 @@ spec:              #Contient les instructions principales du Deployment.
     spec:                  #Définit les conteneurs du pod.
       containers:
       - name: go-web-app
-        image: zozii/go-web-app:v1     #C’est l’image Docker que Kubernetes va télécharger depuis Docker Hub.
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"    #C’est l’image Docker que Kubernetes va télécharger depuis Docker Hub.
         ports:
         - containerPort: 8080
